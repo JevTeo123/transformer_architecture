@@ -51,7 +51,7 @@ class MultiHeadAttention(nn.module):
         key = key.view(key.shape[0], key.shape[1], self.h, self.d_k).transpose(1, 2)
         value = value.view(value.shape[0]. value.shape[1], self.h, self.d_k).transpose(1, 2)
 
-        x, self.attention_scores = MultiHeadAttention.scaled_dot_product_attention(
+        x, self.attention_scores = MultiHeadAttention.attention(
             q = query,
             k = key,
             v = value

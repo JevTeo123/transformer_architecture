@@ -10,9 +10,15 @@ class FeedForwardBlock(nn.Module):
             dropout: probability of dropout occuring
         """
         super().__init__()
+        """
+        - First layer (linear_1) accepts an input dimension of d_model and outputs d_ffn.
+        - Allows to explore better feature interactions through a large dimension
+        - Second layer (linear_2) accepts an input dimension of d_ffn which is the output dimension from the first layer and outputs a dimension of d_model
+        - Compresses all the important feature interactions from a larger dimension back into d_model
+        """
         self.linear_1 = nn.Linear(d_model, d_ffn) #w1 and b1
-        self.dropout = nn.Dropout(dropout)
-        self.linear_2 = nn.Linear(d_ffn, d_model)
+        self.dropout = nn.Dropout(dropout) 
+        self.linear_2 = nn.Linear(d_ffn, d_model) # w2 and b2
     
     def forward(self, x):
         """
