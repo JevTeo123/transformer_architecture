@@ -150,7 +150,7 @@ class ResidualConnection(nn.module):
     def __init__(self, dropout):
         super().__init__()
         self.dropout = dropout
-        self.norm = nn.LayerNorm()
+        self.norm = LayerNormalization()
     def forward(self, x, sublayer):
         """
         Arguments:
@@ -187,7 +187,7 @@ class EncoderBlock(nn.Module):
 class Encoder(nn.Module):
     def __init__(self, layers: nn.ModuleList):
         self.layers = layers
-        self.norm = nn.LayerNorm()
+        self.norm = LayerNormalization()
         
     def forward(self, x, mask):
         for layer in range(self.layers):
@@ -219,7 +219,7 @@ class Decoder(nn.Module):
     def __init__(self, layers: nn.ModuleList):
         super().__init__()
         self.layers = layers
-        self.norm = nn.LayerNorm()
+        self.norm = LayerNormalization()
     
     def forward(self, x, mask):
         for layer in self.layers:
