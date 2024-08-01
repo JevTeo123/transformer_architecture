@@ -6,5 +6,10 @@ class ResidualConnection(nn.module):
         self.dropout = dropout
         self.norm = nn.LayerNorm()
     def forward(self, x, sublayer):
+        """
+        Arguments:
+            x: 
+            sublayer: 
+        """
         return x + self.dropout(sublayer(self.norm(x)))
     
