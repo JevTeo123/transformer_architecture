@@ -27,5 +27,6 @@ class PositionalEncoding(nn.Module):
         self.register_buffer("pe", pe)
 
     def forward(self, x):
+        # Adds the input embeddings with a slice of position encodings based on the seq_len of input embeddings
         x = x + (self.pe[:, :x.shape[1], :]).requires_grad_(False)
-        return self.dropout
+        return self.dropout(x)
